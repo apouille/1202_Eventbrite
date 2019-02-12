@@ -6,15 +6,15 @@ User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
 	description: Faker::Friends.quote, 
-	email: "dauphineforever@yopmail.com",
-	encrypted_password: "lazyass"
+	email: "#{Faker::Name.last_name}@yopmail.com",
+	password: "coucoucou"
 	)
 end
 
 5.times do
 Event.create!(
-    title: "#{Faker::OnePiece.character} Time!",
-	description: "OnePiece citation : #{Faker::OnePiece.quote}", 
+    title: "#{Faker::OnePiece.character}",
+	description: "#{Faker::OnePiece.quote}", 
 	start_date: Faker::Date.forward(30),
 	duration: 5 * rand(1..120),
 	price: rand(1..1000),

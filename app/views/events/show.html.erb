@@ -1,0 +1,18 @@
+
+
+
+<div class="card-body text-info">
+  <div class="card-header">
+	<h1> Evénement numéro <%=params[:id]%></h1>
+</div>
+
+<h3> <%= @event.title %> organisé par <%= @event.administrator.first_name %> </h3>
+
+<h3> <%= @event.description %> </h3>
+
+<p> <%= @event.price %> </p>
+
+<p> <%= @event.location %> </p>
+
+<p> Date de création : <%= @event.created_at.strftime("%d/%m/%Y") %> </p>
+</div>
