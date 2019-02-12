@@ -10,6 +10,21 @@ class UsersController < ApplicationController
   	@user = User.new
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    user_params = params.permit(:first_name, :last_name, :description)
+
+    if @user.update(user_params)
+       redirect_to @user
+    else
+      flash[:danger] = "Il manque des informations"
+      render :show
+    end
+   end
+
 	def auth_user
 	unless current_user.id == params[:id].to_i
 		redirect_to root_path
