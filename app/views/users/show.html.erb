@@ -14,7 +14,8 @@
 		<div class="card mx-auto mb-5" style="width: 30rem;">
 		  <div class="card-body">
 		  <h5 class="card-title"><%= party.title %></h5>
-		  <p class="card-text"><%= party.description %></p>
+		  <p class="card-text"> Description : <%= party.description %></p>
+		 <%= link_to "Pour en savoir plus...", event_path(party.id), class: "btn-light btn p-1" %>
 		  </div>
 		</div>
 	  <% end %>
