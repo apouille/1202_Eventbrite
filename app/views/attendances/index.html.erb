@@ -1,0 +1,25 @@
+
+
+<div class="card-body text-info">
+  <div class="card-header">
+	<h1> Votre Evénement </h1>
+</div>
+
+</br><p> L'événement compte actuellement <%= @attendance_all.count%> participants ! </p></br>
+
+<p> Voici ci-dessous la liste de vos invités : </p>
+
+<div class="row mt-3">
+	  <% @attendance_all.each do |participant| %>
+		<div class="card mx-auto mb-5" style="width: 30rem;">
+		  <div class="card-body">
+		  <h5 class="card-title"><%= participant.attendee.first_name %></h5>
+		  <p> Email : <%= participant.attendee.email %></p>
+		  </div>
+		</div>
+	  <% end %>
+</div>
+
+<div class="text-center mb-2">
+  <%= link_to "Modifier mon événement", edit_event_path(@event.id), :class => "btn btn-info btn-lg mr-1" %>
+</div>

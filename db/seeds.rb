@@ -5,7 +5,7 @@ User.destroy_all
 Event.destroy_all
 Attendance.destroy_all
 
-20.times do
+3.times do
 User.create!(
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
@@ -15,7 +15,7 @@ User.create!(
 	)
 end
 
-5.times do
+3.times do
 Event.create!(
   title: "#{Faker::OnePiece.character}",
 	description: "#{Faker::OnePiece.quote}", 
@@ -27,7 +27,7 @@ Event.create!(
 	)
 end
 
-50.times do
+3.times do
 Attendance.create!(
 	attendee: User.all.sample, 
 	event: Event.all.sample,

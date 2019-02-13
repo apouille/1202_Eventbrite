@@ -1,0 +1,36 @@
+
+
+<div class="card border-info m-5">
+ <div class="card-header"><h1><i class="fas fa-edit"></i> Modifie ton événement </h1></div>
+    <%= form_tag url_for(action: 'update'), method: "patch" do %>
+        <div class="card-body text-info">
+          <div class="form-group">
+            <%= label_tag 'Title'%>
+            <%= text_field_tag :title, @event.title, class:'form-control', placeholder: @event.title %>
+
+            <%= label_tag 'Description'%>
+            <%= text_field_tag :description, @event.description, class:'form-control', placeholder: @event.description %>
+
+            <%= label_tag 'Start_date'%>
+            <%= text_field_tag :start_date, @event.start_date, class:'form-control', placeholder: @event.start_date %>
+
+            <%= label_tag 'Duration'%>
+            <%= text_field_tag :duration, @event.duration, class:'form-control', placeholder: @event.duration %>
+
+            <%= label_tag 'Price'%>
+            <%= text_field_tag :price, @event.price, class:'form-control', placeholder: @event.price %>
+
+            <%= label_tag 'Location'%>
+            <%= text_field_tag :location, @event.location, class:'form-control', placeholder: @event.location %>
+            <br>
+
+            <%= submit_tag "Mettre à jour mon événement", class: "btn btn-info" %>
+
+            <p class="text-right text-muted">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            <%= link_to "Supprimer l'événement", event_path(@event.id), method: "delete", data: { confirm: "Souhaitez-vous vraiment supprimer cet événement?"} %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

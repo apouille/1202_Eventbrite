@@ -20,3 +20,7 @@
 
 <p> Date de l'événement : le <%= @event.start_date.strftime("%m/%d/%y") %></p>
 </div>
+
+<% if current_user == @event.administrator %>
+ <%= link_to "Mon espace événement", attendances_path(params[:id]), class: "btn-info btn p-1" %>
+ <%end%>
