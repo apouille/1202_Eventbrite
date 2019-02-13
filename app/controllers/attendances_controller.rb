@@ -33,7 +33,7 @@ class AttendancesController < ApplicationController
   @attendance = Attendance.new(stripe_customer_id: charge[:customer], attendee: current_user, event: @event)
 
     if @attendance.save
-      redirect_to event_path
+      redirect_to event_path(params[:event_id])
     else
       flash[:danger] = "Il manque des informations"
       render :new 
