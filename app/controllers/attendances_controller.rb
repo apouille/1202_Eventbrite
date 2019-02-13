@@ -4,22 +4,19 @@ class AttendancesController < ApplicationController
 		puts "µ"*10
 		puts params
 		puts "µ"*10
-	  @event = Event.find(params[:format])
+	  @event = Event.find(params[:event_id])
 		@attendance_all = @event.attendances
 	end
 
-	def show
-		@attendance = Attendance.find(params[:id])
-	end
-
 	def new
+	  @event = Event.find(params[:event_id])
 		@attendance = Attendance.new
-
 	end
 
   def create
   # Amount in cents
-  @amount = 500
+	@event = Event.find(params[:event_id])
+  @amount = @event.price
 
   customer = Stripe::Customer.create(
     :email => params[:stripeEmail],
@@ -33,10 +30,14 @@ class AttendancesController < ApplicationController
     :currency    => 'usd'
   )
 
-	rescue Stripe::CardError => e
-	  flash[:error] = e.message
-	  redirect_to new_attendance_path
-	end
+  @attendance = Attendance.new(stripe_customer_id: charge[:customer], attendee: current_user, event: @event)
 
+    if @attendance.save
+      redirect_to event_path
+    else
+      flash[:danger] = "Il manque des informations"
+      render :new 
+    end
+  end
 
 end
