@@ -1,33 +1,43 @@
-PROJET DE MÉLANIE NGUON ET VIVIANE DE PÉTIGNY
+##  :gem: Project Title - RAILS/THE EVENT PROJECT
 
 
-Lien Heroku : https://eventbrite-website.herokuapp.com/
+/!\ Malheureusement, pas de lien Heroku (trop la galère...) mais ça marche très bien en local ! :)   
 
-# A quoi ça sert ?
+
+## A quoi ça sert ?
+
  Créer des évènements et inviter des gens !
 
-# Comment on installe ?
- Très simple : 
-  1. Utilise tes clés API sendgrid dans un fichier '.env' à la racine du dossier
-  2. Petit 'bundle install'
-  3. la série : 'rails db:create // rails db:migrate // rails db:seed'
+## Que faire avant de lancer le localhost ?
 
-# Comment on s'en check ? 
- On s'amuse avec la console pardis! 
- 1. Les tables : 'tp User.all / tp Event.all / tp Attendance.all'
- 2. Les associations genre 'Attendance.first.event.administrator.first_name' ou 'Event.first.attendees'
+  * Rituel habituel du git clone   
+  * Utilise tes clés API dans un fichier '.env' à la racine du dossier  
+  * Petit 'bundle install'  
+  * La série : 'rails db:create // rails db:migrate // rails db:seed'  
+  * On lance localhost://3000 !   
 
-# Comment on check les supers mails ?
- Direction yopmail : 'dauphineforever@yopmail.com' !!!! (oubliez pas de rafraichir la page!!!)
+## Réaliser des tests en local 
+  * Tu peux te connecter via le mail de Maldyn bdoyer@yopmail.com avec le mdp : coucoucou   
+  * Tu peux modifier/supprimer les deux événements que tu organises  
+  * Tu peux aussi participer à l'événement organisé par Brenda!   
 
-# Comment apporter sa pierre à l'édifice ?
 ## Créer votre utilisateur ! 
-  'moi = User.create(first_name:"MonPrénom", last_name:"MonNomDeFamille", description:"Je suis Moi", email:"dauphineforever@yopmail.com", encrypted_password:"coucoutoi...")'
+
+```
+  moi = User.create(first_name:"MonPrénom", last_name:"MonNomDeFamille", description:"Je suis Moi", email:"dauphineforever@yopmail.com", password:"coucoutoi...")
+```
+
 ## Créer votre évènement ! 
-  'party = Event.create(title:"Soirée Pilou Poilu", description:"Promis on se couche tôt et on te fait pas chier", price:5, location:"Manor di Petinisme", start_date:"30/05/2019", duration:20, administrator:moi)'
+
+```
+  party = Event.create(title:"Soirée Pilou Poilu", description:"Promis on se couche tôt et on te fait pas chier", price:5, location:"Manor di Petinisme", start_date:"30/05/2019", duration:20, administrator:moi)
+```
 ## Créer votre participation !
-  'iamin = Attendance.create(stripe_customer_id:"999999", event: party, attendee: User.all.sample)'
 
+```
+  admin = Attendance.create(stripe_customer_id:"999999", event: party, attendee: User.all.sample)
+```
 
+## :heart: Built by : 
 
-
+Mélanie Nguon  
