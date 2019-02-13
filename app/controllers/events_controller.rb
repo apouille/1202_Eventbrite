@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  # before_action :auth_user, only: [:show]
+  # before_action :authenticate_user!, only: [:show]
+  # before_action :auth_admin, only: [:update, :destroy]
 
 	def index
 		@event_all = Event.all
@@ -45,7 +46,7 @@ class EventsController < ApplicationController
   end
   
 
-    def destroy
+  def destroy
     @event = Event.find(params[:id])
     if current_user.id == @event.administrator.id
     flash[:notice] = "Vous avez supprimé un événement avec succès"
@@ -60,6 +61,13 @@ class EventsController < ApplicationController
   end
   end
 
+  
+#   def auth_admin
+#     @event = Event.find(params[:id])
+#    unless current_user.id == @event.administrator
+#     redirect_to root_path
+#   end
+# end
 
 end
 

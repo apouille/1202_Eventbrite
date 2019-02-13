@@ -22,5 +22,7 @@
 </div>
 
 <% if current_user == @event.administrator %>
- <%= link_to "Mon espace événement", attendances_path(params[:id]), class: "btn-info btn p-1" %>
+ <%= link_to "Mon espace événement", event_attendances_path(params[:id]), class: "btn-info btn p-1" %>
  <%end%>
+
+ <%= link_to "Rejoindre l'événement", new_event_attendance_path(params[:id]), class: "btn-danger btn p-1" %>
