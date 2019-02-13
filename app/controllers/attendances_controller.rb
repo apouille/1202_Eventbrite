@@ -1,4 +1,5 @@
 class AttendancesController < ApplicationController
+before_action :authenticate_administrator, only: [:index]
 
 	def index
 		puts "µ"*10
@@ -40,4 +41,20 @@ class AttendancesController < ApplicationController
     end
   end
 
+
+  def authenticate_administrator
+    @event = Event.find(params[:event_id])
+    unless current_user == @event.administrator
+      flash[:danger] = "Vous n'avez pas accès à cette fonctionnalité"
+      redirect_to event_path(params[:event_id])
+    end
+end
+
+  def already_attendee_or_admin
+    @event = Event.find(params[:event_id])
+    if (current_user == @event.administrator) || (@event.attendees.include?(current_user))
+      flash[:danger] = "Vous n'avez pas accès à cette fonctionnalité"
+      redirect_to event_path(params[:event_id])
+    end
+end
 end

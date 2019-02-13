@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-  # before_action :authenticate_user!, only: [:show]
-  # before_action :auth_admin, only: [:update, :destroy]
+ 
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_administrator, only: [:edit, :update, :destroy]
 
 	def index
 		@event_all = Event.all
@@ -61,15 +62,13 @@ class EventsController < ApplicationController
   end
   end
 
-  
-#   def auth_admin
-#     @event = Event.find(params[:id])
-#    unless current_user.id == @event.administrator
-#     redirect_to root_path
-#   end
-# end
-
+  def authenticate_administrator
+    @event = Event.find(params[:id])
+    unless current_user == @event.administrator
+      flash[:danger] = "Vous n'avez pas accès à cette fonctionnalité"
+      redirect_to event_path(params[:id])
+    end
 end
 
-
+end
 
